@@ -1,0 +1,135 @@
+import { Component } from '@angular/core';
+import { Route, Routes } from '@angular/router';
+
+// import { APP_ROLES, AppRole, roleGuard } from './core/guards/role.guard';
+// import { authGuard } from './core/guards/auth.guard';
+
+@Component({
+  standalone: true,
+  template: '',
+})
+class PendingFeatureRouteComponent {}
+
+type FeatureRouteOptions = {
+  path: string;
+  title: string;
+  // roles: AppRole[];
+  componentPath: string;
+};
+
+const featureRoute = ({
+  path,
+  title,
+  // roles,
+  componentPath,
+}: FeatureRouteOptions): Route => ({
+  path,
+  title,
+  // canActivate: [authGuard, roleGuard],
+  component: PendingFeatureRouteComponent,
+  data: {
+    // roles,
+    componentPath,
+  },
+});
+
+export const routes: Routes = [
+  {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'menu',
+  },
+  {
+    path: 'login',
+    title: 'Login',
+    component: PendingFeatureRouteComponent,
+    data: {
+      componentPath: 'features/auth/login/login.component',
+    },
+  },
+  featureRoute({
+    path: 'menu',
+    title: 'Menu',
+    // roles: [APP_ROLES.employee, APP_ROLES.counter, APP_ROLES.admin],
+    componentPath: 'features/menu/menu-browse/menu-browse.component',
+  }),
+  featureRoute({
+    path: 'menu/manage',
+    title: 'Manage Menu',
+    // roles: [APP_ROLES.counter, APP_ROLES.admin],
+    componentPath: 'features/menu/menu-manage/menu-manage.component',
+  }),
+  featureRoute({
+    path: 'cart',
+    title: 'Cart',
+    // roles: [APP_ROLES.employee],
+    componentPath: 'features/cart-order/cart/cart.component',
+  }),
+  featureRoute({
+    path: 'checkout',
+    title: 'Checkout',
+    // roles: [APP_ROLES.employee],
+    componentPath: 'features/cart-order/checkout/checkout.component',
+  }),
+  featureRoute({
+    path: 'orders',
+    title: 'Order History',
+    // roles: [APP_ROLES.employee],
+    componentPath: 'features/cart-order/order-history/order-history.component',
+  }),
+  featureRoute({
+    path: 'wallet',
+    title: 'Wallet',
+    // roles: [APP_ROLES.employee],
+    componentPath: 'features/wallet/wallet/wallet.component',
+  }),
+  {
+    path: 'pickup',
+    pathMatch: 'full',
+    redirectTo: 'pickup/qr',
+  },
+  featureRoute({
+    path: 'pickup/qr',
+    title: 'Pickup QR',
+    // roles: [APP_ROLES.employee],
+    componentPath: 'features/pickup-scanner/qr-view/qr-view.component',
+  }),
+  {
+    path: 'counter',
+    pathMatch: 'full',
+    redirectTo: 'counter/scanner',
+  },
+  featureRoute({
+    path: 'counter/scanner',
+    title: 'Counter Scanner',
+    // roles: [APP_ROLES.counter, APP_ROLES.admin],
+    componentPath: 'features/pickup-scanner/scanner/scanner.component',
+  }),
+  featureRoute({
+    path: 'counter/queue',
+    title: 'Pickup Queue',
+    // roles: [APP_ROLES.counter, APP_ROLES.admin],
+    componentPath: 'features/pickup-scanner/queue/queue.component',
+  }),
+  {
+    path: 'admin',
+    pathMatch: 'full',
+    redirectTo: 'admin/dashboard',
+  },
+  featureRoute({
+    path: 'admin/dashboard',
+    title: 'Admin Dashboard',
+    // roles: [APP_ROLES.admin],
+    componentPath: 'features/admin/dashboard/dashboard.component',
+  }),
+  featureRoute({
+    path: 'admin/operations',
+    title: 'Operations',
+    // roles: [APP_ROLES.admin],
+    componentPath: 'features/admin/operations/operations.component',
+  }),
+  {
+    path: '**',
+    redirectTo: 'menu',
+  },
+];
