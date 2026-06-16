@@ -5,6 +5,7 @@ import { Route, Routes } from '@angular/router';
 import { CheckoutComponent } from './features/cart-order/checkout/checkout.component';
 import { OrderHistoryComponent } from './features/cart-order/order-history/order-history.component';
 import { OrderDetailComponent } from './features/cart-order/order-history/order-detail/order-detail.component';
+import { MenuBrowseComponent } from './features/menu/menu-browse/menu-browse.component';
 
 // import { APP_ROLES, AppRole, roleGuard } from './core/guards/role.guard';
 // import { authGuard } from './core/guards/auth.guard';
@@ -141,6 +142,10 @@ export const routes: Routes = [
       .then(m => m.OperationsComponent)
     // roles: [APP_ROLES.admin],
     // componentPath: 'features/admin/operations/operations.component',
+  },
+  {
+    path: 'test/menu',
+    component: MenuBrowseComponent,
   },
   {
     path: '**',
