@@ -8,6 +8,7 @@ import {
   MyOrderSummaryResponse,
   OrderDetailResponse,
 } from '../models/order.models';
+import { environment } from '../../../../environments/environment';
 
 type OrderListPayload =
   | MyOrderSummaryResponse[]
@@ -19,7 +20,7 @@ type OrderListPayload =
 
 @Injectable({ providedIn: 'root' })
 export class OrderApiService {
-  private readonly API_URL = 'http://localhost:8081/api/orders';
+  private readonly API_URL = `${environment.apiUrl}/orders`;
 
   constructor(private http: HttpClient) {}
 

@@ -264,6 +264,7 @@
   color: var(--text);
   font-size: 20px;
   font-weight: 900;
+  text-align: center;
 }
 
 .qr-content {
@@ -284,6 +285,7 @@
 .qr-token {
   width: 100%;
   max-width: 280px;
+  margin: 0 auto;
 }
 
 .qr-view-btn {
