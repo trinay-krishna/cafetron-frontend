@@ -19,6 +19,14 @@ import { APP_ROLES } from 'src/app/models/auth.models';
 export class MenuBrowseComponent implements OnInit, OnDestroy {
 
   items: MenuItem[] = [];
+  readonly foodTypeFilters = [
+    { label: 'All', value: 'ALL' },
+    { label: 'Veg', value: 'Veg' },
+    { label: 'Non Veg', value: 'Non Veg' },
+    { label: 'Beverage', value: 'Beverage' },
+    { label: 'Other', value: 'Other' }
+  ];
+
   activeFilter = 'ALL';
   isLoading = true;
   isSearching = false;
@@ -248,6 +256,10 @@ export class MenuBrowseComponent implements OnInit, OnDestroy {
     }
   }
 
+  isActiveFilter(type: string): boolean {
+    return this.normalizeFoodType(this.activeFilter) === this.normalizeFoodType(type);
+  }
+
   private normalizeItems(data: unknown): MenuItem[] {
     if (Array.isArray(data)) {
       return data;
@@ -255,6 +267,10 @@ export class MenuBrowseComponent implements OnInit, OnDestroy {
 
     const payload = data as { items?: MenuItem[]; data?: MenuItem[]; content?: MenuItem[] } | null;
     return payload?.items ?? payload?.data ?? payload?.content ?? [];
+  }
+
+  private normalizeFoodType(type: string): string {
+    return type.trim().replace(/[_-]+/g, ' ').replace(/\s+/g, ' ').toLowerCase();
   }
 
   trackByItemId(index: number, item: MenuItem): number {

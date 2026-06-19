@@ -62,13 +62,13 @@
 
       <div class="filters">
         <button
-          *ngFor="let filter of ['ALL', 'VEG', 'NON_VEG', 'VEGAN', 'JAIN']; let i = index"
+          *ngFor="let filter of foodTypeFilters; let i = index"
           id="menu-filter-btn-{{ i + 1 }}"
-          [class.active]="activeFilter === filter"
+          [class.active]="isActiveFilter(filter.value)"
           class="filter-btn"
-          (click)="applyFilter(filter)"
+          (click)="applyFilter(filter.value)"
         >
-          {{ filter === 'ALL' ? 'All' : filter.replace('_', ' ') }}
+          {{ filter.label }}
         </button>
       </div>
     </section>

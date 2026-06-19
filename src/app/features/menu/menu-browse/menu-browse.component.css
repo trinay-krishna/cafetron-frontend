@@ -190,9 +190,10 @@
 
 .controls-card {
   display: grid;
-  grid-template-columns: minmax(240px, 1fr) auto;
+  grid-template-columns: minmax(240px, 1fr) minmax(0, auto);
   gap: 14px;
   align-items: center;
+  overflow: hidden;
   padding: 16px;
 }
 
@@ -241,12 +242,29 @@
 
 .filters {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 8px;
-  justify-content: flex-end;
+  justify-content: flex-start;
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 2px 2px 8px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.55) transparent;
+}
+
+.filters::-webkit-scrollbar {
+  height: 6px;
+}
+
+.filters::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.48);
 }
 
 .filter-btn {
+  flex: 0 0 auto;
   min-height: 40px;
   padding: 0 14px;
   border: 1px solid rgba(255, 255, 255, 0.48);
@@ -254,6 +272,7 @@
   background: rgba(255, 255, 255, 0.14);
   color: rgba(255, 255, 255, 0.84);
   font-weight: 900;
+  white-space: nowrap;
   cursor: pointer;
 }
 
