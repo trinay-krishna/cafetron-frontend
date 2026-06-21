@@ -119,9 +119,6 @@
               <span>{{ getPickupSlotCaption(slot) }}</span>
             </button>
           </div>
-          <p *ngIf="!hasAvailablePickupSlots()" id="checkout-card-no-slots-message" class="slot-help">
-            No pickup windows are available for today.
-          </p>
         </ng-container>
 
         <ng-container *ngSwitchCase="1">
@@ -279,9 +276,6 @@
             <span>{{ getPickupSlotCaption(slot) }}</span>
           </button>
         </div>
-        <p *ngIf="!hasAvailablePickupSlots()" id="checkout-overview-no-slots-message" class="slot-help">
-          No pickup windows are available for today.
-        </p>
       </article>
 
       <article id="checkout-overview-food-card" class="overview-card">

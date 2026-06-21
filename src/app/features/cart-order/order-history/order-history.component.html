@@ -57,7 +57,6 @@
           <p id="orders-location-slot-{{ i + 1 }}">{{ order.location || 'Cafeteria counter' }} pickup at {{ order.pickupSlot }}</p>
           <span id="orders-created-at-{{ i + 1 }}">
             {{ order.createdAt | date: 'mediumDate' }}
-            <span *ngIf="order.pickupTimeZone">({{ order.pickupTimeZone }})</span>
           </span>
         </div>
 

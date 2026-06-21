@@ -126,7 +126,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   }
 
   getPickupSlotCaption(slot: PickupWindow): string {
-    return slot.caption;
+    return this.isPickupSlotAvailable(slot) ? slot.caption : `${slot.caption} - closed today`;
   }
 
   selectPickupSlot(slot: PickupWindow): void {
@@ -147,10 +147,6 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     event.preventDefault();
     event.stopPropagation();
     this.showToast(this.getInvalidPickupSlotMessage(slot), 'error');
-  }
-
-  hasAvailablePickupSlots(): boolean {
-    return this.pickupSlots.some((slot) => this.isPickupSlotAvailable(slot));
   }
 
   isPickupSlotAvailable(slotOrId: PickupWindow | string): boolean {
@@ -278,7 +274,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   }
 
   private getInvalidPickupSlotMessage(slot: PickupWindow): string {
-    return `${slot.label} pickup is closed for today. Please choose a later available window.`;
+    return `${slot.label} pickup is closed for today. Please choose an available pickup window.`;
   }
 
   private resolvePickupSlot(slotOrId: PickupWindow | string): PickupWindow | null {
