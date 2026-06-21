@@ -37,7 +37,9 @@ export class LoginComponent {
       next: (response) => {
         this.isLoading = false;
         this.cdr.detectChanges();
-        this.router.navigate([this.authService.getDefaultRoute()]);
+        this.router.navigate(['/timezone'], {
+          queryParams: { returnUrl: this.authService.getDefaultRoute() }
+        });
       },
       error: (err) => {
         this.isLoading = false;

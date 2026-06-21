@@ -1,0 +1,33 @@
+<main id="timezone-setup-page" class="timezone-page">
+  <section id="timezone-setup-card" class="timezone-card">
+    <div class="brand-mark">
+      <span class="material-symbols-outlined">public</span>
+    </div>
+    <p class="eyebrow">Before you continue</p>
+    <h1>Select timezone</h1>
+    <p class="subtitle">Pickup slots will be shown in this timezone and saved for checkout.</p>
+
+    <div class="timezone-control">
+      <label for="timezone-setup-select">Timezone</label>
+      <select
+        id="timezone-setup-select"
+        [(ngModel)]="selectedTimeZone"
+        [disabled]="isLoading"
+      >
+        <option *ngFor="let timeZone of timeZoneOptions" [value]="timeZone.id">
+          {{ getTimeZoneLabel(timeZone.id) }}
+        </option>
+      </select>
+    </div>
+
+    <div id="timezone-setup-error" *ngIf="errorMessage" class="error-message">
+      <span class="material-symbols-outlined">error</span>
+      <span>{{ errorMessage }}</span>
+    </div>
+
+    <button id="timezone-setup-continue-btn" type="button" (click)="continue()" [disabled]="isLoading">
+      <span>{{ isLoading ? 'Loading...' : 'Continue' }}</span>
+      <span class="material-symbols-outlined">arrow_forward</span>
+    </button>
+  </section>
+</main>
